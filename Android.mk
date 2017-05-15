@@ -17,7 +17,7 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifneq ($(filter piccolo paella vegetalte,$(TARGET_DEVICE)),)
+ifneq ($(filter p839f30,$(TARGET_DEVICE)),)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
@@ -75,7 +75,7 @@ $(MBA_SYMLINK): $(LOCAL_INSTALLED_MODULE)
 
 ALL_DEFAULT_INSTALLED_MODULES += $(MBA_SYMLINK)
 
-ifneq ($(filter piccolo paella,$(TARGET_DEVICE)),)
+ifneq ($(filter p839f30,$(TARGET_DEVICE)),)
 
 # MODEM
 MODEM_IMAGES := \

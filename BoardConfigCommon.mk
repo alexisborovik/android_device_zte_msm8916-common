@@ -68,7 +68,7 @@ TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
 
 # CMHW
-BOARD_HARDWARE_CLASS += device/bq/msm8916-common/cmhw/src
+BOARD_HARDWARE_CLASS += device/zte/msm8916-common/cmhw/src
 
 # Add suffix variable to uniquely identify the board
 TARGET_BOARD_SUFFIX := _32
@@ -81,9 +81,9 @@ TARGET_HW_DISK_ENCRYPTION := true
 # Filesystem
 BOARD_BOOTIMAGE_PARTITION_SIZE     := 0x02000000
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x02000000
-BOARD_SYSTEMIMAGE_PARTITION_SIZE   := 1556925644
-BOARD_CACHEIMAGE_PARTITION_SIZE    := 405798912
-BOARD_PERSISTIMAGE_PARTITION_SIZE  := 28311552
+BOARD_SYSTEMIMAGE_PARTITION_SIZE   := 2147483648
+BOARD_CACHEIMAGE_PARTITION_SIZE    := 268435456
+BOARD_PERSISTIMAGE_PARTITION_SIZE  := 33554432
 BOARD_FLASH_BLOCK_SIZE             := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE  := ext4
 
@@ -111,7 +111,7 @@ MAX_EGL_CACHE_KEY_SIZE := 12*1024
 MAX_EGL_CACHE_SIZE := 2048*1024
 
 # Headers
-TARGET_SPECIFIC_HEADER_PATH := device/bq/msm8916-common/include
+TARGET_SPECIFIC_HEADER_PATH := device/zte/msm8916-common/include
 
 # Healthd
 BACKLIGHT_PATH := /sys/class/leds/lcd-backlight/brightness
@@ -129,13 +129,13 @@ TARGET_PROVIDES_LIBLIGHT := true
 TARGET_POWERHAL_VARIANT := qcom
 
 # Properties
-TARGET_SYSTEM_PROP := device/bq/msm8916-common/system.prop
+TARGET_SYSTEM_PROP := device/zte/msm8916-common/system.prop
 
 # QCOM hardware
 BOARD_USES_QCOM_HARDWARE := true
 
 # Recovery
-TARGET_RECOVERY_FSTAB := device/bq/msm8916-common/rootdir/etc/fstab.qcom
+TARGET_RECOVERY_FSTAB := device/zte/msm8916-common/rootdir/etc/fstab.qcom
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_SUPPRESS_EMMC_WIPE := true
@@ -145,7 +145,7 @@ TARGET_RIL_VARIANT := caf
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
-BOARD_SEPOLICY_DIRS += device/bq/msm8916-common/sepolicy
+BOARD_SEPOLICY_DIRS += device/zte/msm8916-common/sepolicy
 
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true
