@@ -103,10 +103,6 @@ media.stagefright.use-awesome=false
 vidc.enc.narrow.searchrange=1
 drm.service.enabled=true
 
-# Perfd
-ro.core_ctl_min_cpu=2
-ro.core_ctl_max_cpu=4
-
 # Set max background services
 ro.config.max_starting_bg=8
 

@@ -1,5 +1,4 @@
 allow system_server persist_file:file { read open write };
-allow system_server themeservice_app_data_file:dir relabelto;
 
 # CMHW
 allow system_server touchpanel_sysfs:file rw_file_perms;

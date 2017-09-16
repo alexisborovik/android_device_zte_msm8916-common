@@ -54,10 +54,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     init.qcom.bt.sh
 
-# Browser
-PRODUCT_PACKAGES += \
-    Gello
-
 # Camera
 PRODUCT_PACKAGES += \
     Snap
@@ -177,7 +173,9 @@ PRODUCT_PACKAGES += \
 # Qualcomm
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.timed.enable=true \
-    ro.vendor.extension_library=/vendor/lib/libqti-perfd-client.so
+    ro.vendor.extension_library=/vendor/lib/libqti-perfd-client.so \
+    ro.core_ctl_min_cpu=2 \
+    ro.core_ctl_max_cpu=4
 
 # Ramdisk
 PRODUCT_PACKAGES += \
