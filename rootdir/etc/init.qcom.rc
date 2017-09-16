@@ -60,14 +60,34 @@ on boot
     chown system system /sys/module/radio_iris_transport/parameters/fmsmd_set
     chmod 0660 /sys/module/radio_iris_transport/parameters/fmsmd_set
 
-    # Enable writing to led blink node from userspace
-    chown system system /sys/class/leds/red/blink
-    chown system system /sys/class/leds/green/blink
-    chown system system /sys/class/leds/blue/blink
+    # Enable writing to led breathing node from userspace
+    chown system system /sys/class/leds/left/brightness
+    chown system system /sys/class/leds/middle/brightness
+    chown system system /sys/class/leds/right/brightness
+    chown system system /sys/class/leds/left/breathing
+    chown system system /sys/class/leds/middle/breathing
+    chown system system /sys/class/leds/right/breathing
     chown system system /sys/class/leds/flashlight/brightness
     chown system system /sys/class/leds/flashlight-front/brightness
     chown system camera /sys/class/leds/torch-light0/brightness
     chmod 0660 /sys/class/leds/torch-light0/brightness
+
+    #[ECID:000000] ZTEBSP wanghaifei 20140905 start, for sensor init
+    chown system root /sys/class/i2c-adapter/i2c-0/0-0039/prox_enable
+    chown system root /sys/class/i2c-adapter/i2c-0/0-0039/prox_cal
+    chown system root /sys/class/i2c-adapter/i2c-0/0-0039/als_enable
+    chown system root /sys/class/i2c-adapter/i2c-0/0-0039/als_pollrate_ms
+
+    chown system root /sys/class/i2c-adapter/i2c-0/0-0018/enable_device
+    chown system root /sys/class/i2c-adapter/i2c-0/0-0018/pollrate_ms
+    chown system root /sys/class/i2c-adapter/i2c-0/0-0019/enable_device
+    chown system root /sys/class/i2c-adapter/i2c-0/0-0019/pollrate_ms
+    chown system root /sys/class/i2c-adapter/i2c-0/0-000f/enable_device
+    chown system root /sys/class/i2c-adapter/i2c-0/0-000f/pollrate_ms
+    chown system root /sys/class/i2c-adapter/i2c-0/0-0068/enable_device
+    chown system root /sys/class/i2c-adapter/i2c-0/0-0068/pollrate_ms  
+    chown system root /sys/devices/virtual/input/input3/driver/enable
+    chown system root /sys/devices/virtual/input/input4/driver/enable
 
     # Create QMUX deamon socket area
     mkdir /dev/socket/qmux_radio 0770 radio radio
@@ -355,18 +375,25 @@ service charger /charger
     group system graphics
     seclabel u:r:healthd:s0
 
-service adjust_settings /system/bin/adjust_settings
-    class main
-    user root
-    disabled
-    oneshot
+#service adjust_settings /system/bin/adjust_settings
+#    class main
+#    user root
+#    disabled
+#    oneshot
 
 on property:sys.boot_completed=1
     start adjust_settings
 
-service set_sn /system/bin/adjust_serialno setsn
-    disabled
-    oneshot
+#service set_sn /system/bin/adjust_serialno setsn
+#    disabled
+#    oneshot
 
 on property:sys.sn_set=1
     start set_sn
+
+#ZTE-MODIFY wanghaifei start 20141120, add cywee firmware update
+service firmware_update /system/bin/firmware_update
+    class late_start
+    user root
+    oneshot
+# ZTE-MODOFY wanghaifei end 20141120

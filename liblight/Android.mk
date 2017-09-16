@@ -14,7 +14,7 @@
 
 LOCAL_PATH:= $(call my-dir)
 
-ifneq ($(filter piccolo paella vegetalte,$(TARGET_DEVICE)),)
+ifneq ($(filter p839f30,$(TARGET_DEVICE)),)
 
 # HAL module implemenation stored in
 # hw/<COPYPIX_HARDWARE_MODULE_ID>.<ro.board.platform>.so
