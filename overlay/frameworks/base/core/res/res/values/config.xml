@@ -89,6 +89,9 @@
         <item>7</item>
     </integer-array>
 
+	<!-- Boolean indicating whether the wifi chipset has dual frequency band support -->
+    <bool translatable="false" name="config_wifi_dual_band_support">true</bool>
+
     <!-- Boolean indicating whether the wifi chipset supports background scanning mechanism.
          This mechanism allows the host to remain in suspend state and the dongle to actively
          scan and wake the host when a configured SSID is detected by the dongle. This chipset
@@ -98,17 +101,6 @@
     <!-- Wifi driver supports batched scan -->
     <bool translatable="false" name="config_wifi_batched_scan_supported">true</bool>
 
-    <!-- Idle Receive current for wifi radio. 0 by default-->
-    <integer translatable="false" name="config_wifi_idle_receive_cur_ma">1</integer>
-
-    <!-- Rx current for wifi radio. 0 by default-->
-    <integer translatable="false" name="config_wifi_active_rx_cur_ma">21</integer>
-
-    <!-- Tx current for wifi radio. 0 by default-->
-    <integer translatable="false" name="config_wifi_tx_cur_ma">185</integer>
-
-    <!-- Operating volatage for wifi radio. 0 by default-->
-    <integer translatable="false" name="config_wifi_operating_voltage_mv">3300</integer>
 
     <!-- Flag indicating whether the we should enable the automatic brightness in Settings.
          Software implementation will be used if config_hardware_auto_brightness_available is not set -->
@@ -372,11 +364,6 @@
     <!-- Whether device supports double tap to wake -->
     <bool name="config_supportDoubleTapWake">true</bool>
 
-    <!-- Rx current for bluetooth controller. 0 by default-->
-    <integer translatable="false" name="config_bluetooth_rx_cur_ma">12</integer>
-
-    <!-- Tx current for bluetooth controller. 0 by default-->
-    <integer translatable="false" name="config_bluetooth_tx_cur_ma">55</integer>
 
     <!-- Operating volatage for bluetooth controller. 0 by default-->
     <integer name="config_bluetooth_operating_voltage_mv">3300</integer>
