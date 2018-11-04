@@ -31,7 +31,7 @@ TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_VARIANT := cortex-a53
 
 # Kernel
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x80000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_RAMDISK_OFFSET     := 0x01000000
@@ -63,6 +63,9 @@ FEATURE_QCRIL_UIM_SAP_SERVER_MODE := true
 
 # Camera
 TARGET_NEEDS_LEGACY_CAMERA_HAL1_DYN_NATIVE_HANDLE := true
+USE_DEVICE_SPECIFIC_CAMERA := true
+TARGET_HAS_LEGACY_CAMERA_HAL1 := true
+BOARD_GLOBAL_CFLAGS += -DCAMERA_VENDOR_L_COMPAT
 
 # Charger
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
@@ -78,12 +81,21 @@ TARGET_HW_DISK_ENCRYPTION := true
 # Filesystem
 BOARD_BOOTIMAGE_PARTITION_SIZE     := 0x02000000
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x02000000
-BOARD_SYSTEMIMAGE_PARTITION_SIZE   := 1556925644
-BOARD_CACHEIMAGE_PARTITION_SIZE    := 405798912
-BOARD_PERSISTIMAGE_PARTITION_SIZE  := 28311552
+BOARD_SYSTEMIMAGE_PARTITION_SIZE   := 2147483648
+BOARD_CACHEIMAGE_PARTITION_SIZE    := 268435456
+BOARD_PERSISTIMAGE_PARTITION_SIZE  := 33554432
 BOARD_FLASH_BLOCK_SIZE             := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE  := ext4
 TARGET_USES_MKE2FS := true
+
+# Treble
+#TARGET_COPY_OUT_VENDOR := vendor
+#BOARD_VENDORIMAGE_PARTITION_SIZE := 524286976
+#BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
+#PRODUCT_FULL_TREBLE_OVERRIDE := true
+#PRODUCT_COMPATIBILITY_MATRIX_LEVEL_OVERRIDE := 27
+#PRODUCT_VENDOR_MOVE_ENABLED := true
+#BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
 
 # FM
 BOARD_HAVE_QCOM_FM := true
@@ -118,7 +130,7 @@ TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
 TARGET_KEYMASTER_WAIT_FOR_QSEE := true
 
 # Lineagehw
-BOARD_HARDWARE_CLASS += device/bq/msm8916-common/lineagehw/src
+BOARD_HARDWARE_CLASS += device/zte/msm8916-common/lineagehw/src
 
 # Power
 TARGET_HAS_NO_POWER_STATS := true
@@ -132,7 +144,7 @@ BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
 BOARD_USES_QCOM_HARDWARE := true
 
 # Recovery
-TARGET_RECOVERY_FSTAB := device/bq/msm8916-common/rootdir/etc/fstab.qcom
+TARGET_RECOVERY_FSTAB := device/zte/msm8916-common/rootdir/etc/fstab.qcom
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_SUPPRESS_EMMC_WIPE := true
@@ -143,11 +155,10 @@ TARGET_RIL_VARIANT := caf
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
 include device/qcom/sepolicy/legacy-sepolicy.mk
-BOARD_SEPOLICY_DIRS += device/bq/msm8916-common/sepolicy
+BOARD_SEPOLICY_DIRS += device/zte/msm8916-common/sepolicy
 
 # Shims
 TARGET_LD_SHIM_LIBS := \
-    /system/lib/libcamera_client.so|libcamera_parameters_shim.so \
     /vendor/lib/libizat_core.so|libshims_get_process_name.so \
     /vendor/lib/libflp.so|libshims_flp.so
 
@@ -155,7 +166,7 @@ TARGET_LD_SHIM_LIBS := \
 BOARD_USES_QC_TIME_SERVICES := true
 
 # Vendor Interface Manifest
-DEVICE_MANIFEST_FILE := device/bq/msm8916-common/manifest.xml
+DEVICE_MANIFEST_FILE := device/zte/msm8916-common/manifest.xml
 
 # Widevine
 BOARD_WIDEVINE_OEMCRYPTO_LEVEL := 3

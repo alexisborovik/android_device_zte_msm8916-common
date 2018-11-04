@@ -1,0 +1,14 @@
+on early-boot
+    chown system system /sys/class/leds/lcd-backlight/brightness
+    chown system system /sys/class/leds/button-backlight/brightness
+    chown system system /sys/class/leds/left/brightness
+    chown system system /sys/class/leds/middle/brightness
+    chown system system /sys/class/leds/right/brightness
+    chown system system /sys/class/leds/left/breathing
+    chown system system /sys/class/leds/middle/breathing
+    chown system system /sys/class/leds/right/breathing
+
+service light-hal-2-0 /vendor/bin/hw/android.hardware.light@2.0-service.zte_8916
+    class hal
+    user system
+    group system

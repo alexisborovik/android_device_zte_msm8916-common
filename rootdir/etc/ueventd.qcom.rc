@@ -94,64 +94,29 @@
 
 /sys/devices/virtual/smdpkt/smdcntl*       open_timeout   0664 radio radio
 
-# bmi160
-/sys/devices/virtual/input/input* acc_fast_calibration_x    0660    system      input
-/sys/devices/virtual/input/input* acc_fast_calibration_y    0660    system      input
-/sys/devices/virtual/input/input* acc_fast_calibration_z    0660    system      input
-/sys/devices/virtual/input/input* acc_odr                   0660    system      input
-/sys/devices/virtual/input/input* acc_offset_x              0660    system      input
-/sys/devices/virtual/input/input* acc_offset_y              0660    system      input
-/sys/devices/virtual/input/input* acc_offset_z              0660    system      input
-/sys/devices/virtual/input/input* acc_op_mode               0660    system      input
-/sys/devices/virtual/input/input* acc_range                 0660    system      input
-/sys/devices/virtual/input/input* acc_value                 0660    system      input
-/sys/devices/virtual/input/input* bmi_value                 0660    system      input
-/sys/devices/virtual/input/input* delay                     0660    system      input
-/sys/devices/virtual/input/input* enable                    0660    system      input
-/sys/devices/virtual/input/input* fifo_bytecount            0660    system      input
-/sys/devices/virtual/input/input* fifo_data_frame           0660    system      input
-/sys/devices/virtual/input/input* fifo_data_sel             0660    system      input
-/sys/devices/virtual/input/input* fifo_flush                0660    system      input
-/sys/devices/virtual/input/input* fifo_full_stop            0660    system      input
-/sys/devices/virtual/input/input* fifo_header_en            0660    system      input
-/sys/devices/virtual/input/input* fifo_int_tag_en           0660    system      input
-/sys/devices/virtual/input/input* fifo_time_en              0660    system      input
-/sys/devices/virtual/input/input* fifo_watermark            0660    system      input
-/sys/devices/virtual/input/input* gyro_fast_calibration_en  0660    system      input
-/sys/devices/virtual/input/input* gyro_odr                  0660    system      input
-/sys/devices/virtual/input/input* gyro_offset_x             0660    system      input
-/sys/devices/virtual/input/input* gyro_offset_y             0660    system      input
-/sys/devices/virtual/input/input* gyro_offset_z             0660    system      input
-/sys/devices/virtual/input/input* gyro_op_mode              0660    system      input
-/sys/devices/virtual/input/input* gyro_range                0660    system      input
-/sys/devices/virtual/input/input* gyro_value                0660    system      input
-/sys/devices/virtual/input/input* name                      0660    system      input
-/sys/devices/virtual/input/input* place                     0660    system      input
-/sys/devices/virtual/input/input* register                  0660    system      input
-/sys/devices/virtual/input/input* selftest                  0660    system      input
-/sys/devices/virtual/input/input* sensor_time               0660    system      input
-/sys/devices/virtual/input/input* stc_clc                   0660    system      input
-/sys/devices/virtual/input/input* stc_enable                0660    system      input
-/sys/devices/virtual/input/input* stc_mode                  0660    system      input
-/sys/devices/virtual/input/input* stc_value                 0660    system      input
-/sys/devices/virtual/input/input* temperature               0660    system      input
-/sys/devices/virtual/input/input* test                      0660    system      input
-
-# akm09911
-/sys/devices/virtual/input/input* value                     0660    system      input
-/sys/devices/virtual/input/input* enable                    0660    system      input
-/sys/devices/virtual/input/input* op_mode                   0660    system      input
-/sys/devices/virtual/input/input* rept_xy                   0660    system      input
-/sys/devices/virtual/input/input* rept_z                    0660    system      input
-
-# light and proximity
-/sys/devices/virtual/input/input* als_enable                0660    system      input
-/sys/devices/virtual/input/input* als_poll_delay            0660    system      input
-/sys/devices/virtual/input/input* als                       0660    system      input
-/sys/devices/virtual/input/input* ps_enable                 0660    system      input
-
-# NFC
-/dev/bcm2079x             0660   nfc        nfc
+# sensors
+/sys/devices/i2c-12/12-*  pollrate_ms 0664 system system
+/sys/devices/f9925000.i2c/i2c-0/0-*                 enable         0660    input    system
+/sys/devices/f9925000.i2c/i2c-0/0-*                 poll_delay     0660    input    system
+/sys/devices/soc.0/78b6000.i2c/i2c-0/0-*            enable         0664    input    system
+/sys/devices/soc.0/78b6000.i2c/i2c-0/0-*            poll_delay     0660    input    system
+/sys/devices/soc.0/78b6000.i2c/i2c-0/0-*            enable_wakeup  0660    input    system
+/sys/devices/soc.0/78b6000.i2c/i2c-0/0-*            max_latency    0660    input    system
+/sys/devices/soc.0/78b6000.i2c/i2c-0/0-*            flush          0660    input    system
+/sys/devices/soc.0/78b6000.i2c/i2c-0/0-*            calibrate      0660    input    system
+/sys/devices/soc.0/78b5000.i2c/i2c-1/1-*            enable         0660    input    system
+/sys/devices/soc.0/78b5000.i2c/i2c-1/1-*            poll_delay     0660    input    system
+/sys/devices/soc.0/78b5000.i2c/i2c-1/1-*            enable_wakeup  0660    input    system
+/sys/devices/soc.0/78b5000.i2c/i2c-1/1-*            max_latency    0660    input    system
+/sys/devices/soc.0/78b5000.i2c/i2c-1/1-*            flush          0660    input    system
+/sys/devices/soc.0/78b5000.i2c/i2c-1/1-*            calibrate      0660    input    system
+/sys/devices/virtual/optical_sensors/proximity      ps_adc         0660    input    system
+/sys/devices/virtual/optical_sensors/proximity      ps_poll_delay  0660    input    system
+/sys/devices/virtual/optical_sensors/lightsensor    ls_auto        0660    input    system
+/sys/devices/virtual/optical_sensors/lightsensor    ls_poll_delay  0660    input    system
+/sys/devices/virtual/input/input*                   poll           0660    input    system
+/sys/devices/virtual/input/input*                   pollrate_ms    0660    input    system
+/dev/input/event*			0660	system	input
 
 # vm_bms
 /dev/battery_data         0660   system     system

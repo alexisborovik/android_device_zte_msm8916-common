@@ -24,12 +24,12 @@
 
 #define LCD_LED         "/sys/class/leds/lcd-backlight/"
 #define BUTTON_LED      "/sys/class/leds/button-backlight/"
-#define LEFT_LED        "/sys/class/leds/left/"
-#define MIDDLE_LED      "/sys/class/leds/middle/"
-#define RIGHT_LED       "/sys/class/leds/right/"
+#define RED_LED         "/sys/class/leds/red/"
+#define GREEN_LED       "/sys/class/leds/green/"
+#define BLUE_LED        "/sys/class/leds/blue/"
 
 #define BRIGHTNESS      "brightness"
-#define BREATHING       "breathing"
+#define BLINK           "blink"
 
 namespace {
 /*
@@ -41,10 +41,10 @@ static void set(std::string path, int value) {
     file << value;
 }
 
-static void set_breath(std::string path, int on, int off) {
+static void set_blink(std::string path, int value, int on, int off) {
     std::ofstream file(path);
     char buffer[40];
-    snprintf(buffer, sizeof(buffer), "1040:%d:1040:%d\n", on, off);
+    snprintf(buffer, sizeof(buffer), "%d %d %d\n", value, on, off);
 
     file << buffer;
 }
@@ -94,23 +94,23 @@ static void handleNotification(const LightState& state) {
 
     switch(blink) {
         case 0:
-            set(MIDDLE_LED BRIGHTNESS, red);
-            set(LEFT_LED BRIGHTNESS, green);
-            set(RIGHT_LED BRIGHTNESS, blue);
+            set(RED_LED BRIGHTNESS, red);
+            set(GREEN_LED BRIGHTNESS, green);
+            set(BLUE_LED BRIGHTNESS, blue);
         break;
         default:
-        if(red) {
-			set(MIDDLE_LED BRIGHTNESS, 0);
-            set_breath(MIDDLE_LED BREATHING, onMs, offMs);
-		}	
-        if(green) {
-			set(LEFT_LED BRIGHTNESS, 0);
-            set_breath(LEFT_LED BREATHING, onMs, offMs);
-        }
-        if(blue) {
-			set(RIGHT_LED BRIGHTNESS, 0);
-            set_breath(RIGHT_LED BREATHING, onMs, offMs);
-        }
+        if(red)
+            set_blink(RED_LED BLINK, red, onMs, offMs);
+        else
+            set(RED_LED BRIGHTNESS, red);
+        if(green)
+            set_blink(GREEN_LED BLINK, green, onMs, offMs);
+        else
+            set(GREEN_LED BRIGHTNESS, green);
+        if(blue)
+            set_blink(BLUE_LED BLINK, blue, onMs, offMs);
+        else
+            set(BLUE_LED BRIGHTNESS, blue);
         break;
     }
 }

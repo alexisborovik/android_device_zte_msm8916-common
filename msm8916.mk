@@ -71,7 +71,6 @@ PRODUCT_PACKAGES += \
 # Camera
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl-legacy \
-    libcamera_parameters_shim \
     Snap
 
 # Connectivity
@@ -156,7 +155,7 @@ PRODUCT_PACKAGES += \
 
 # Lights
 PRODUCT_PACKAGES += \
-    android.hardware.light@2.0-service.bq_8916
+    android.hardware.light@2.0-service.zte_8916
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -237,11 +236,11 @@ PRODUCT_BOOT_JARS += \
 
 # Usb
 PRODUCT_PACKAGES += \
-    android.hardware.usb@1.0-service.bq_8916
+    android.hardware.usb@1.0-service.zte_8916
 
 # Vibrator
 PRODUCT_PACKAGES += \
-    android.hardware.vibrator@1.0-service.bq_8916
+    android.hardware.vibrator@1.0-service.zte_8916
 
 # Wifi
 PRODUCT_PACKAGES += \
