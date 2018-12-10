@@ -249,6 +249,16 @@ service rmt_storage /vendor/bin/rmt_storage
     shutdown critical
     writepid /dev/cpuset/system-background/tasks
 
+on property:vold.decrypt=trigger_restart_framework
+    start config_bt_addr
+    start wcnss-service
+	
+service config_bt_addr /vendor/bin/btnvtool -O
+    class core
+    user bluetooth
+    group bluetooth radio
+    oneshot
+
 service hciattach /vendor/bin/init.qcom.bt.sh
     class late_start
     user bluetooth

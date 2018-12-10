@@ -23,7 +23,7 @@
 #include <fstream>
 
 #define LCD_LED         "/sys/class/leds/lcd-backlight/"
-#define BUTTON_LED      "/sys/class/leds/button-backlight/"
+//#define BUTTON_LED      "/sys/class/leds/button-backlight/"
 #define LEFT_LED        "/sys/class/leds/left/"
 #define MIDDLE_LED      "/sys/class/leds/middle/"
 #define RIGHT_LED       "/sys/class/leds/right/"
@@ -49,6 +49,14 @@ static void set_breath(std::string path, int on, int off) {
     file << buffer;
 }
 
+static void clr_breath(std::string path, int on, int off) {
+    std::ofstream file(path);
+    char buffer[40];
+    snprintf(buffer, sizeof(buffer), "0:%d:0:%d\n", on, off);
+
+    file << buffer;
+}
+
 static uint32_t rgbToBrightness(const LightState& state) {
     uint32_t color = state.color & 0x00ffffff;
     return ((77 * ((color >> 16) & 0xff)) + (150 * ((color >> 8) & 0xff)) +
@@ -60,10 +68,10 @@ static void handleBacklight(const LightState& state) {
     set(LCD_LED BRIGHTNESS, brightness);
 }
 
-static void handleButtons(const LightState& state) {
-    uint32_t brightness = state.color & 0xFF;
-    set(BUTTON_LED BRIGHTNESS, brightness);
-}
+//static void handleButtons(const LightState& state) {
+//    uint32_t brightness = state.color & 0xFF;
+//    set(BUTTON_LED BRIGHTNESS, brightness);
+//}
 
 static void handleNotification(const LightState& state) {
     uint32_t red, green, blue;
@@ -94,6 +102,9 @@ static void handleNotification(const LightState& state) {
 
     switch(blink) {
         case 0:
+	    clr_breath(MIDDLE_LED BREATHING, onMs, offMs);
+            clr_breath(LEFT_LED BREATHING, onMs, offMs);
+            clr_breath(RIGHT_LED BREATHING, onMs, offMs);
             set(MIDDLE_LED BRIGHTNESS, red);
             set(LEFT_LED BRIGHTNESS, green);
             set(RIGHT_LED BRIGHTNESS, blue);
@@ -120,11 +131,11 @@ static inline bool isLit(const LightState& state) {
 }
  /* Keep sorted in the order of importance. */
 static std::vector<LightBackend> backends = {
-    { Type::ATTENTION, handleNotification },
+    { Type::BACKLIGHT, handleBacklight },
     { Type::NOTIFICATIONS, handleNotification },
     { Type::BATTERY, handleNotification },
-    { Type::BACKLIGHT, handleBacklight },
-    { Type::BUTTONS, handleButtons },
+    { Type::BUTTONS, handleNotification },
+    { Type::ATTENTION, handleNotification }, // make attention the least important one
 };
 
 }  // anonymous namespace
