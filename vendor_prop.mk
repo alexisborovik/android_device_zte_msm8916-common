@@ -113,21 +113,17 @@ PRODUCT_PROPERTY_OVERRIDES += \
     drm.service.enabled=true \
     persist.media.treble_omx=false
 
-# min/max cpu in core control
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.core_ctl_min_cpu=2 \
-    ro.core_ctl_max_cpu=4
-
 # Perf
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.extension_library=/vendor/lib/libqti-perfd-client.so
 
-# SDcardfs
-ro.sys.sdcardfs=false
-
 # Set max background services
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.config.max_starting_bg=8
+
+# Storage
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.sys.sdcardfs=false
 
 # Telephony
 PRODUCT_PROPERTY_OVERRIDES += \
