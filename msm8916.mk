@@ -39,7 +39,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libqcompostprocbundle \
     libqcomvisualizer \
-    libqcomvoiceprocessing
+    libqcomvoiceprocessing \
+    tinymix
 
 PRODUCT_PACKAGES += \
     android.hardware.audio@2.0-impl \
@@ -91,6 +92,7 @@ PRODUCT_COPY_FILES += \
 
 # Display
 PRODUCT_PACKAGES += \
+    copybit.msm8916 \
     gralloc.msm8916 \
     hwcomposer.msm8916 \
     libtinyxml \
@@ -100,6 +102,7 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.allocator@2.0-impl \
     android.hardware.graphics.allocator@2.0-service \
     android.hardware.graphics.mapper@2.0-impl \
+    android.hardware.graphics.composer@2.1-impl \
     android.hardware.memtrack@1.0-impl \
     android.hardware.memtrack@1.0-service
 
@@ -204,11 +207,15 @@ PRODUCT_COPY_FILES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power@1.0-service-qti
-PRODUCT_PACKAGES += \
     android.hardware.power@1.0-impl \
-    android.hardware.power@1.0-service \
     power.msm8916
+
+# Qualcomm
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.timed.enable=true \
+    ro.vendor.extension_library=/vendor/lib/libqti-perfd-client.so \
+    ro.core_ctl_min_cpu=2 \
+    ro.core_ctl_max_cpu=4
 
 # Ramdisk
 PRODUCT_PACKAGES += \
@@ -230,21 +237,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-impl
 
-# Telephony
-PRODUCT_PACKAGES += \
-    qti-telephony-common \
-    telephony-ext
-
-PRODUCT_BOOT_JARS += \
-    telephony-ext
-
-# Usb
-PRODUCT_PACKAGES += \
-    android.hardware.usb@1.0-service.zte_8916
-
 # Vibrator
 PRODUCT_PACKAGES += \
-    android.hardware.vibrator@1.0-service.zte_8916
+    android.hardware.vibrator@1.0-impl
 
 # Wifi
 PRODUCT_PACKAGES += \

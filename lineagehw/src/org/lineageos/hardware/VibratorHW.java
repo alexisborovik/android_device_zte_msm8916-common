@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 The CyanogenMod Project
+ * Copyright (C) 2015 The CyanogenMod Project
  *               2017-2018, The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,30 +19,34 @@ package org.lineageos.hardware;
 
 import org.lineageos.internal.util.FileUtils;
 
-public class DisplayColorCalibration {
-    private static final String COLOR_FILE = "/sys/class/graphics/fb0/rgb";
+public class VibratorHW {
+    private static String CONTROL_PATH = "/sys/devices/virtual/timed_output/vibrator/vtg_level";
 
     public static boolean isSupported() {
-        return FileUtils.isFileWritable(COLOR_FILE);
+        return FileUtils.isFileWritable(CONTROL_PATH);
     }
 
-    public static int getMaxValue()  {
-        return 32768;
+    public static int getMaxIntensity() {
+        return 31;
     }
 
-    public static int getMinValue()  {
-        return 255;
+    public static int getMinIntensity() {
+        return 19;
     }
 
-    public static int getDefValue() {
-        return getMaxValue();
+    public static int getWarningThreshold() {
+        return -1;
     }
 
-    public static String getCurColors()  {
-        return FileUtils.readOneLine(COLOR_FILE);
+    public static int getCurIntensity() {
+        return Integer.parseInt(FileUtils.readOneLine(CONTROL_PATH));
     }
 
-    public static boolean setColors(String colors) {
-        return FileUtils.writeLine(COLOR_FILE, colors);
+    public static int getDefaultIntensity() {
+        return 27;
+    }
+
+    public static boolean setIntensity(int intensity) {
+        return FileUtils.writeLine(CONTROL_PATH, String.valueOf(intensity));
     }
 }
