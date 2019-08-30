@@ -123,7 +123,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Storage
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sys.sdcardfs=false
+    ro.sys.sdcardfs=true
 
 # Telephony
 PRODUCT_PROPERTY_OVERRIDES += \
