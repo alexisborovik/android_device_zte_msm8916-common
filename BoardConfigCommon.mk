@@ -25,7 +25,7 @@ TARGET_BOARD_PLATFORM := msm8916
 
 # Architecture
 TARGET_ARCH := arm
-TARGET_ARCH_VARIANT := armv7-a-neon
+TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_VARIANT := cortex-a53
@@ -66,6 +66,9 @@ TARGET_NEEDS_LEGACY_CAMERA_HAL1_DYN_NATIVE_HANDLE := true
 USE_DEVICE_SPECIFIC_CAMERA := true
 TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 BOARD_GLOBAL_CFLAGS += -DCAMERA_VENDOR_L_COMPAT
+TARGET_PROCESS_SDK_VERSION_OVERRIDE := \
+	/system/bin/mediaserver=21 \
+	/system/vendor/bin/mm-qcamera-daemon=21
 
 # Charger
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
@@ -108,6 +111,7 @@ TARGET_USES_ION := true
 USE_OPENGL_RENDERER := true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
+TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS := 0x02000000U
 
 # Shader cache config options
 # Maximum size of the GLES Shaders that can be cached for reuse.
@@ -126,7 +130,7 @@ BACKLIGHT_PATH := /sys/class/leds/lcd-backlight/brightness
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
 
 # Keymaster
-TARGET_KEYMASTER_WAIT_FOR_QSEE := true
+TARGET_KEYMASTER_SKIP_WAITING_FOR_QSEE := false
 
 # Lineagehw
 BOARD_HARDWARE_CLASS += device/zte/msm8916-common/lineagehw/src
@@ -153,8 +157,8 @@ BOARD_SUPPRESS_EMMC_WIPE := true
 TARGET_RIL_VARIANT := caf
 
 # SELinux
-include device/qcom/sepolicy/sepolicy.mk
-include device/qcom/sepolicy/legacy-sepolicy.mk
+# include device/qcom/sepolicy/sepolicy.mk
+include device/qcom/sepolicy-legacy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += device/zte/msm8916-common/sepolicy
 
 # Shims
