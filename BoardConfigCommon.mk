@@ -155,7 +155,7 @@ TARGET_RIL_VARIANT := caf
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
 include device/qcom/sepolicy/legacy-sepolicy.mk
-BOARD_SEPOLICY_DIRS += device/zte/msm8916-common/sepolicy
+BOARD_SEPOLICY_DIRS += device/zte/msm8916-common/sepolicy vendor/maruos/sepolicy
 
 # Shims
 TARGET_LD_SHIM_LIBS := \
