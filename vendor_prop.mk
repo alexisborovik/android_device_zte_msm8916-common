@@ -34,6 +34,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.qualcomm.bt.hci_transport=smd \
     ro.bluetooth.dun=true \
     ro.bluetooth.sap=true
+# Load dummy initial BT MAC address
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.boot.btmacaddr=00:00:00:00:00:00
 
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
