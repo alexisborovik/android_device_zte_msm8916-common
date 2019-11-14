@@ -166,6 +166,9 @@ TARGET_LD_SHIM_LIBS := \
     /vendor/lib/libizat_core.so|libshims_get_process_name.so \
     /vendor/lib/libflp.so|libshims_flp.so
 
+# Telephone old MCC/MNC
+TARGET_USES_OLD_MNC_FORMAT := true
+
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true
 
