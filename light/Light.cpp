@@ -135,7 +135,7 @@ static std::vector<LightBackend> backends = {
     { Type::NOTIFICATIONS, handleNotification },
     { Type::BATTERY, handleNotification },
     { Type::BUTTONS, handleNotification },
-//    { Type::ATTENTION, handleNotification }, // make attention the least important one
+    { Type::ATTENTION, handleNotification }, // make attention the least important one
 };
 
 }  // anonymous namespace

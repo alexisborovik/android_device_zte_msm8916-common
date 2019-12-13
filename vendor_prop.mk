@@ -29,7 +29,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Bluetooth
 PRODUCT_PROPERTY_OVERRIDES += \
-    qcom.bluetooth.soc=smd \
+    vendor.qcom.bluetooth.soc=smd \
     ro.bluetooth.hfp.ver=1.7 \
     ro.qualcomm.bt.hci_transport=smd \
     ro.bluetooth.dun=true \
@@ -144,6 +144,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.radio.mode_pref_nv10=0 \
     persist.radio.proc_nw_scan=1 \
     persist.radio.disable_flexmap=1 \
+    persist.radio.add_power_save=1 \
     ro.telephony.call_ring.multiple=false \
     ro.telephony.ril.config=simactivation
 
