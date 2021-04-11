@@ -15,6 +15,9 @@
 # limitations under the License.
 #
 
+# Build
+BUILD_BROKEN_DUP_RULES := true
+
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := msm8916
 TARGET_NO_BOOTLOADER := true
