@@ -1,5 +1,18 @@
 allow init self:process execmem;
 allow init self:tcp_socket { create setopt bind listen };
 allow init node:tcp_socket node_bind;
-
 allow init system_data_file:fifo_file write;
+allow init input_device:chr_file { ioctl write };
+allow init system_file:dir relabelfrom;
+allow init system_file:lnk_file relabelfrom;
+allow init system_file:file relabelfrom;
+allow init vendor_configs_file:dir relabelfrom;
+allow init vendor_configs_file:file { relabelfrom mounton };
+allow init vendor_file:dir relabelfrom;
+allow init sysfs:file setattr;
+allow init { hal_lineage_touch_hwservice hal_authsecret_hwservice hidl_base_hwservice }:hwservice_manager add;
+allow init touchpanel_sysfs:file { open write };
+allow init vendor_file:file { execute_no_trans };
+allow init hwservicemanager:binder { call transfer };
+allow init system_app:binder call;
+allow init sysfs_leds:lnk_file { r_file_perms };
