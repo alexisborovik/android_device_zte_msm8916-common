@@ -1,3 +1,6 @@
+ifneq ($(BUILD_TINY_ANDROID),true)
+#Compile this library only for builds with the latest modem image
+
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
@@ -6,7 +9,8 @@ include $(CLEAR_VARS)
 LOCAL_SHARED_LIBRARIES := \
     libutils \
     libcutils \
-    liblog
+    liblog \
+    libprocessgroup
 
 LOCAL_SRC_FILES += \
     loc_log.cpp \
@@ -56,9 +60,10 @@ LOCAL_COPY_HEADERS:= \
    loc_misc_utils.h
 
 LOCAL_MODULE := libgps.utils
-LOCAL_MODULE_OWNER := qcom
-LOCAL_VENDOR_MODULE := true
 
 LOCAL_MODULE_TAGS := optional
 
+LOCAL_PRELINK_MODULE := false
+
 include $(BUILD_SHARED_LIBRARY)
+endif # not BUILD_TINY_ANDROID
